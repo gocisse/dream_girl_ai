@@ -2,6 +2,7 @@ package main
 
 import (
 	"log"
+	"log/slog"
 	"net/http"
 	"os"
 
@@ -10,11 +11,15 @@ import (
 )
 
 func main() {
+	if err := initEveryThing(); err != nil {
+		log.Fatal(err)
+	}
 	router := chi.NewMux()
 
 	// router.Get("/", http.HandlerFunc)
-
-	log.Fatal(http.ListenAndServe(os.Getenv("HTTP_LISTEN_ADDR"), router))
+	port := os.Getenv("HTTP_LISTEN_ADDR")
+	slog.Info("application running on", "port", port)
+	log.Fatal(http.ListenAndServe(port, router))
 }
 
 func initEveryThing() error {
