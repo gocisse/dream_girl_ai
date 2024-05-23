@@ -18,10 +18,5 @@ func main() {
 }
 
 func initEveryThing() error {
-
-	err := godotenv.Load()
-	if err != nil {
-		log.Fatal("Failed to load .env")
-	}
-	return nil
+	return  godotenv.Load()
 }
