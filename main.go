@@ -6,6 +6,7 @@ import (
 	"net/http"
 	"os"
 
+	"gitbub.com/gocisse/dream_girl_ai/handler"
 	"github.com/go-chi/chi/v5"
 	"github.com/joho/godotenv"
 )
@@ -16,7 +17,7 @@ func main() {
 	}
 	router := chi.NewMux()
 
-	// router.Get("/", http.HandlerFunc)
+	router.Get("/", handler.MakeHandler(handler.HandleHomeIndex))
 	port := os.Getenv("HTTP_LISTEN_ADDR")
 	slog.Info("application running on", "port", port)
 	log.Fatal(http.ListenAndServe(port, router))
