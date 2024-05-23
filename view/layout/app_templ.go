@@ -10,6 +10,8 @@ import "context"
 import "io"
 import "bytes"
 
+import "gitbub.com/gocisse/dream_girl_ai/view/ui"
+
 func App(nav bool) templ.Component {
 	return templ.ComponentFunc(func(ctx context.Context, templ_7745c5c3_W io.Writer) (templ_7745c5c3_Err error) {
 		templ_7745c5c3_Buffer, templ_7745c5c3_IsBuffer := templ_7745c5c3_W.(*bytes.Buffer)
@@ -28,7 +30,7 @@ func App(nav bool) templ.Component {
 			return templ_7745c5c3_Err
 		}
 		if nav {
-			_, templ_7745c5c3_Err = templ_7745c5c3_Buffer.WriteString("navigation")
+			templ_7745c5c3_Err = ui.Navigation().Render(ctx, templ_7745c5c3_Buffer)
 			if templ_7745c5c3_Err != nil {
 				return templ_7745c5c3_Err
 			}
