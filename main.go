@@ -20,8 +20,10 @@ func main() {
 		log.Fatal(err)
 	}
 	router := chi.NewMux()
+	router.Use(handler.WithUser) // middleware --see chi doc 
 	router.Handle("/*", http.StripPrefix("/", http.FileServer(http.FS(FS))))
 	router.Get("/", handler.MakeHandler(handler.HandleHomeIndex))
+	
 
 	port := os.Getenv("HTTP_LISTEN_ADDR")
 	slog.Info("application running on", "port", port)
